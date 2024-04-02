@@ -25,6 +25,7 @@ from lightning.app.storage.path import Path, _filesystem, _shared_storage_path
 from lightning.app.storage.requests import _ExistsRequest, _ExistsResponse, _GetRequest, _GetResponse
 from lightning.app.utilities.app_helpers import Logger
 from lightning.app.utilities.component import _is_flow_context
+import fickling
 
 _logger = Logger(__name__)
 
@@ -271,4 +272,4 @@ class Payload(_BasePayload):
 
     def load(self, path: str) -> Any:
         with open(path, "rb") as f:
-            return pickle.load(f)
+            return fickling.load(f)

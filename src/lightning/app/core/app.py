@@ -57,6 +57,7 @@ from lightning.app.utilities.proxies import ComponentDelta
 from lightning.app.utilities.scheduler import SchedulerThread
 from lightning.app.utilities.tree import breadth_first
 from lightning.app.utilities.warnings import LightningFlowWarning
+import fickling
 
 if TYPE_CHECKING:
     from lightning.app.core.flow import LightningFlow
@@ -609,7 +610,7 @@ class LightningApp:
             raise Exception(f"Found 2 checkpoints `{available_checkpoints}`with the same version.")
         checkpoint_path = os.path.join(checkpoints_dir, available_checkpoints[0])
         with open(checkpoint_path, "rb") as fo:
-            state = pickle.load(fo)
+            state = fickling.load(fo)
         self.load_state_dict(state)
 
     def _dump_checkpoint(self) -> Optional[str]:

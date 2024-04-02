@@ -22,6 +22,7 @@ from pathlib import Path
 
 from lightning.app.core.work import LightningWork
 from lightning.app.utilities.app_helpers import _LightningAppRef
+import fickling
 
 NON_PICKLABLE_WORK_ATTRIBUTES = ["_request_queue", "_response_queue", "_backend", "_setattr_replacement"]
 
@@ -102,6 +103,6 @@ def dump(work: LightningWork, f: typing.BinaryIO) -> None:
 def load(f: typing.BinaryIO) -> typing.Any:
     # inject current working directory to sys.path
     sys.path.insert(1, str(Path.cwd()))
-    work = pickle.load(f)
+    work = fickling.load(f)
     sys.path.pop(1)
     return work
