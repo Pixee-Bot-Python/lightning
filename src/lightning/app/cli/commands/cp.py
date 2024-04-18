@@ -261,7 +261,7 @@ def _download_file(path: str, url: str, progress: Progress, task_id: TaskID) -> 
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     with contextlib.suppress(ConnectionError):
-        request = requests.get(url, stream=True, verify=False)  # noqa: S501
+        request = requests.get(url, stream=True, verify=True)  # noqa: S501
 
         chunk_size = 1024
 
